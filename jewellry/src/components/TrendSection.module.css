@@ -1,0 +1,97 @@
+.container {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  background-color: #111827;
+}
+.divone {
+  width: 550px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.textt{
+    width: 200px;
+}
+.h6 {
+  font-weight: normal;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.h2 {
+
+
+  font-size: 45px;
+  font-weight: normal;
+  font-family: "Cinzel", serif;
+  line-height: 1.3em;
+}
+.p {
+  border: 0;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+.shopnowbtn {
+  background-color: transparent;
+
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: solid 1;
+  color: rgb(255, 255, 255);
+  position: relative;
+  top: 20px;
+}
+
+.shopnowbtn:hover {
+  background-color: rgb(255, 255, 255);
+  transform: scale(1.05);
+  color: rgb(0, 0, 0);
+  border: none;
+}
+
+.divtwo {
+  width: 550px;
+  height: 700px;
+  background-image: url(https://images.squarespace-cdn.com/content/v1/65ebea705af20674902b9f32/7c413dfa-9646-4a45-a924-5e2ec904c91d/14254747585995.jpg);
+  background-size: cover; 
+}
+.images{
+    position: relative;
+    top:100px ;
+    right: 280px;
+}
+
+@media (max-width: 948px) {
+  .container {
+    flex-direction: column; /* Ekran küçüldükçe card'ları dikey sıralamak için */
+    gap: 40px; /* Elemanlar arasında daha fazla boşluk */
+  }
+
+  .divone, .divtwo {
+   max-width: 330px;
+    height: 300px;
+  }
+
+  .textt {
+    width: 100%; /* Metin alanını %100 genişlikte tutuyoruz */
+  }
+
+  .h2 {
+    font-size: 2rem; /* Daha küçük ekranlar için yazı boyutunu küçültüyoruz */
+  }
+  .images{
+    position: relative;
+   
+    right: 80px;
+    width: 200px;
+    height: 200px;
+}
+}

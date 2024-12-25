@@ -1,0 +1,134 @@
+.aboutFounder {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 80px;
+}
+
+.textSection {
+  flex: 1;
+}
+
+.imageSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.subtitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.highlight {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #555;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  background-color: #c39b77;
+  margin: 20px 0;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+  .aboutFounder {
+    padding: 30px 40px;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .highlight {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutFounder {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .textSection,
+  .imageSection {
+    flex: none;
+    width: 100%;
+  }
+
+  .image {
+    max-width: 300px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .highlight {
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutFounder {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .highlight {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .image {
+    max-width: 250px;
+  }
+}

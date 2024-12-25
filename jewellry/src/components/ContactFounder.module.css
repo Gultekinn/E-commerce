@@ -1,0 +1,80 @@
+.common {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px; /* Add spacing between sections */
+    padding: 20px;
+    background-color: black;
+  }
+  
+  .sectionOne {
+    width: 600px;
+    min-height: 500px;
+    text-align: start;
+    padding: 40px;
+   color: white;
+    margin-top: 230px;
+  }
+  
+  .h2 {
+    font-size: 2.5rem; /* Slightly larger for emphasis */
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 20px;
+    color: white;
+
+  }
+  
+  .p {
+    font-size: 1rem;
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .contactList{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+   
+
+  }
+  
+  .contactList li {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+
+  }
+  
+  .contactList li::before {
+    content: '•';
+    color: #007BFF;
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+  
+  .sectionTwo {
+    width: 600px;
+    min-height: auto;
+ 
+    padding: 20px;
+  }
+  @media (max-width: 768px) {
+    .common {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sectionOne,
+    .sectionTwo {
+      width: 90%;
+      margin-bottom: 20px;
+    }
+  }
+    

@@ -1,0 +1,173 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #808e9c; /* Night blue background */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.navListTwo {
+  display: flex;
+  gap: 15px;
+}
+
+.categorySelect {
+  color: #ffffff; /* Hover text color */
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.categorySelect ::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #5772df, #0f00b3);
+  transition: width 0.3s ease;
+
+}
+.categorySelect:hover {
+  color: #0a0b2d; /* Hover text color */
+  transform: translateX(5px); /* Slight hover movement */
+}
+
+.categorySelect:hover::after {
+  width: 100%;
+}
+
+.desktopNav {
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 250px;
+  background-color: rgba(0, 34, 68, 0.9); /* Slight transparency for blur effect */
+  backdrop-filter: blur(5px); /* Blur effect */
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  border-top-right-radius: 15px; /* Smooth top-right corner */
+}
+
+.sidebarClose {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: #ffffff; /* Hover text color */
+}
+
+.navListMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navItem {
+  color: #ffffff; /* Hover text color */
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navItem::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #5772df, #0f00b3);
+  transition: width 0.3s ease;
+}
+
+.navItem:hover {
+  color: #0a0b2d; /* Hover text color */
+  transform: translateX(5px); /* Slight hover movement */
+}
+
+.navItem:hover::after {
+  width: 100%;
+}
+
+.navListMobile .navItem {
+  font-size: 20px;
+}
+
+.searchShoppingContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.searchShoppingContainer .navItem {
+  color: #f0f0f0; /* Hover text color */
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 22px; /* İkonları biraz büyütmek için */
+}
+
+.searchShoppingContainer .navItem:hover {
+  color: #ffffff; /* Hover text color */
+}
+
+/* Select için çevresindeki çerçeveyi kaldırma */
+.categorySelect {
+  background-color: transparent;
+  border: none;
+  outline: none; /* Focus olunca çerçeve görünmesini engelle */
+  color: #ffffff; /* Hover text color */
+  font-size: 16px;
+}
+
+.categorySelect:focus {
+  border: none; /* Focus sırasında da çerçeve olmamalı */
+}
+
+/* İkonlar yan yana hizalandı */
+.searchShoppingContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .searchShoppingContainer {
+    margin-top: 15px;
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,58 @@
+.contactUs {
+    position: relative;
+    background-image: url('https://cdn.create.vista.com/api/media/small/348355710/stock-photo-diamond-gemstones-black-velour-isolated-black'); /* Arka plan görseli */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh; /* Görselin yüksekliği */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Koyu bir katman */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content {
+    text-align: center;
+    color: #fff;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .aboutUs {
+      height: 60vh; /* Daha küçük ekranlar için yüksekliği ayarla */
+    }
+  
+    .title {
+      font-size: 32px;
+    }
+  
+    .subtitle {
+      font-size: 16px;
+    }
+  }
+  

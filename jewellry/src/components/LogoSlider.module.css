@@ -1,0 +1,13 @@
+/* components/LogoSlider.module.css */
+
+.slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image {
+    max-height: 1050px; /* Resim yüksekliği */
+    object-fit: contain;
+  }
+  
