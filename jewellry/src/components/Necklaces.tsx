@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { ShoppingCart, Eye, Heart } from "lucide-react";
 
+// Products interface to match the API response
 interface Products {
   _id: string;
   title: string;
@@ -10,12 +11,12 @@ interface Products {
   mainimage: string;
 }
 
-const CardRing = () => {
+const CardNecklaces = () => {
   const [products, setProducts] = useState<Products[]>([]);
 
   useEffect(() => {
     axios
-      .get<Products[]>("http://localhost:8085/rings")
+      .get<Products[]>("http://localhost:8085/necklaces")
       .then((res) => {
         setProducts(res.data);
       })
@@ -54,7 +55,7 @@ const CardRing = () => {
 
           <div className="p-4">
             <h2 className="text-lg font-semibold mb-2 text-center">{product.title}</h2>
-            <p className="text-center text-gray-600 font-medium">{product.price.toFixed(2)} dollar</p>
+            <p className="text-center text-gray-600 font-medium">{product.price.toFixed(2)}$</p>
           </div>
         </div>
       ))}
@@ -62,4 +63,4 @@ const CardRing = () => {
   );
 };
 
-export default CardRing;
+export default CardNecklaces;

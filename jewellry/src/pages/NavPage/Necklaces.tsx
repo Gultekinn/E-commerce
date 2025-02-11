@@ -1,4 +1,5 @@
 
+import CardNecklaces from "@/components/Necklaces";
 import React from "react";
 
 const Necklaces: React.FC = () => {
@@ -6,6 +7,7 @@ const Necklaces: React.FC = () => {
     <div>
       <h1>Bracelets Collection</h1>
       <p>Explore our exclusive bracelets collection.</p>
+      <CardNecklaces/>
     </div>
   );
 };
