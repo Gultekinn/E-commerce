@@ -23,7 +23,7 @@ const AboutFounder = () => {
       </div>
       <div className={styles.imageSection}>
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVCdUBULTDmpju4ek4_mFvKyoBjSh66NsmHQ3McJ5oxySYS3KVw_64PJEyZGcxlnd1xrU&usqp=CAU"
+          src="https://www.apm.mc/cdn/shop/files/APM-Monaco-Collection-Up-and-Down.jpg?v=1732700021&width=1800"
           alt="Founder"
           className={styles.image}
         />

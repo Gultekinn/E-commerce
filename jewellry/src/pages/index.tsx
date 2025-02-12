@@ -4,6 +4,7 @@ import PopularProduct from "@/components/PopularProduct";
 import LogoSlider from "@/components/LogoSlider";
 import TrendSection from "../components/TrendSection";
 import Bussines from "@/components/Bussines";
+import Categories from "@/components/Categories";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,6 +21,9 @@ export default function Home() {
       </div>
     </div>
     <LogoSlider/>
+
+ <Categories/> <br /> <br /> <br />
+
     <PopularProduct/>
   <TrendSection/>
   <Bussines/>
