@@ -6,12 +6,14 @@ import logo from "../../../public/logo.png";
 import { ShoppingCart, Heart, LogIn, UserPlus, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Header: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const cartItems = useSelector((state: any) => state.cart.items); // Sepet verisini çekiyoruz
 
   const router = useRouter();
 
@@ -99,18 +101,26 @@ const Header: React.FC = () => {
               Contact
             </Link>
           </li>
+          <li>
+          
+          </li>
         </ul>
 
-        <div className="hidden md:flex space-x-4">
+        <div className="hidden md:flex space-x-4 items-center">
           <Link href="/favorites">
             <Heart size={22} className="text-gray-700 hover:text-red-500" />
           </Link>
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <ShoppingCart size={22} className="text-gray-700 hover:text-black" />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
           <Link href="/login">
             <button className="flex items-center border-gray-700 text-gray-700 rounded-md hover:text-red-700">
-              <LogIn size={18} className="mr-2" />Login
+              <LogIn size={18} className="mr-2" /> Login
             </button>
           </Link>
         </div>
@@ -158,34 +168,22 @@ const Header: React.FC = () => {
             {isDropdownOpen && (
               <ul className="mt-2 bg-gray-100 rounded-md p-2 space-y-2">
                 <li>
-                  <Link
-                    href="/NavPage/Rings"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
+                  <Link href="/NavPage/Rings" onClick={() => setIsSidebarOpen(false)}>
                     Rings
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/NavPage/Bracelets"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
+                  <Link href="/NavPage/Bracelets" onClick={() => setIsSidebarOpen(false)}>
                     Bracelets
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/NavPage/Earrings"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
+                  <Link href="/NavPage/Earrings" onClick={() => setIsSidebarOpen(false)}>
                     Earrings
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/NavPage/Necklaces"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
+                  <Link href="/NavPage/Necklaces" onClick={() => setIsSidebarOpen(false)}>
                     Necklaces
                   </Link>
                 </li>
@@ -206,15 +204,15 @@ const Header: React.FC = () => {
           <Link href="/favorites">
             <Heart size={22} className="text-gray-700 hover:text-red-500" />
           </Link>
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <ShoppingCart size={22} className="text-gray-700 hover:text-black" />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
         </div>
-        <Link href="/login">
-          <button className="border-gray-700 text-gray-700 rounded-md hover:text-red-700 flex items-center mt-6">
-            <UserPlus size={18} className="mr-2" />Login
-          </button>
-        </Link>
       </motion.div>
     </motion.nav>
   );

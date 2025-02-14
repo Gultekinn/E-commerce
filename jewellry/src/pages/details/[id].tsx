@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Minus, Plus } from "lucide-react"; 
+import {  Heart } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../redux/features/cartSlice";
+import { toggleFavorite } from "../../../redux/features/favoritesSlice";
 
-interface Detailss {
+interface Product {
+  _id: string;
   title: string;
   price: number;
   category: string[];
@@ -14,7 +18,10 @@ interface Detailss {
 const Detail = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [data, setData] = useState<Detailss | null>(null);
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: any) => state.favorites.items);
+  const cart = useSelector((state: any) => state.cart.items);
+  const [data, setData] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState<string | null>(null);
@@ -24,72 +31,69 @@ const Detail = () => {
     setLoading(true);
 
     const possiblePaths = ["rings", "bracelets", "earrings", "necklaces"];
-    let found = false; 
+    let found = false;
 
     for (const path of possiblePaths) {
       try {
-        console.log(`Fetching: http://localhost:8085/${path}/${id}`);
-        const res = await axios.get<Detailss>(`http://localhost:8085/${path}/${id}`);
-
+        const res = await axios.get<Product>(`http://localhost:8085/${path}/${id}`);
         if (res.data) {
           setData(res.data);
-          found = true; 
-          break; 
+          found = true;
+          break;
         }
       } catch (err) {
-        console.error(`Hata: ${path}/${id} bulunamadı.`);
+        console.error(`Error: ${path}/${id} not found.`);
       }
     }
 
-    if (!found) {
-      console.error("Ürün hiçbir kategoride bulunamadı!");
-      setData(null);
-    }
-
+    if (!found) setData(null);
     setLoading(false);
   };
 
   useEffect(() => {
-    if (router.isReady && id) getProductDetails();
+    if (router.isReady && id) {
+      getProductDetails();
+      const savedQuantity = localStorage.getItem(`quantity_${id}`);
+      if (savedQuantity) {
+        setQuantity(parseInt(savedQuantity));
+      }
+    }
   }, [id, router.isReady]);
 
-  const handleQuantityChange = (type: "increase" | "decrease") => {
-    if (type === "increase") {
-      setQuantity((prev) => prev + 1);
-    } else if (type === "decrease" && quantity > 1) {
-      setQuantity((prev) => prev - 1);
+
+  const handleAddToCart = () => {
+    if (data) {
+      dispatch(addToCart({ ...data, quantity }));
     }
   };
+  
 
   return (
-    <div className="p-4 max-w-4xl mx-auto mt-20">
+    <div className="p-6 max-w-5xl mx-auto mt-20 bg-white rounded-lg shadow-lg">
       {loading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center text-gray-500">Loading...</p>
       ) : data ? (
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-8">
           <img
             src={`http://localhost:8085/public/${data.mainimage}`}
             alt={data.title}
             className="w-full md:w-1/2 rounded-lg shadow-md object-cover"
           />
           <div className="flex-1">
-            <h1 className="text-2xl font-bold mb-4">{data.title}</h1>
+            <h1 className="text-3xl font-bold mb-4 text-gray-900">{data.title}</h1>
             <p className="text-gray-700 mb-4">{data.description}</p>
-            <p className="text-xl font-semibold text-gray-900 mb-4">Price: ${data.price}</p>
-            <p className="text-gray-600 mb-4">Kateqoriya: {data.category.join(", ")}</p>
+            <p className="text-2xl font-semibold text-gray-900 mb-4">${(data.price * quantity).toFixed(2)}</p>
+            <p className="text-gray-600 mb-4">Category: {data.category.join(", ")}</p>
 
-            {/* Ölçü Seçimi */}
             <div className="mb-4">
-              <p className="font-medium text-gray-700 mb-2">Size:</p>
+              <p className="font-medium text-gray-700 mb-2">Select Size:</p>
               <div className="flex gap-2">
                 {["14", "15", "16", "17"].map((sizeOption) => (
                   <button
                     key={sizeOption}
                     onClick={() => setSize(sizeOption)}
-                    className={`px-4 py-2 border rounded-lg ${
-                      size === sizeOption
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-gray-800"
+                    className={`px-4 py-2 border rounded-lg transition-all hover:bg-gray-800 hover:text-white ${
+                      size === sizeOption ? "bg-gray-800 text-white" : "bg-white text-gray-800"
                     }`}
                   >
                     {sizeOption}
@@ -98,38 +102,29 @@ const Detail = () => {
               </div>
             </div>
 
-            {/* Adet Kontrolü */}
-            <div className="mb-6 flex items-center gap-4">
-              <p className="font-medium text-gray-700"> Count:</p>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleQuantityChange("decrease")}
-                  className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-                >
-                  <Minus size={16} />
-                </button>
-                <span className="font-medium text-gray-900">{quantity}</span>
-                <button
-                  onClick={() => handleQuantityChange("increase")}
-                  className="p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
-            </div>
-
-            {/* Sepete Ekle */}
-            <button className="w-full py-3 bg-gray-800 text-white font-medium rounded-lg hover:bg-gray-700 transition-all">
-              Add to basket
-            </button> <br /><br />
-
-            <button className="w-full py-3 bg-white-800 text-black-700 border-2 font-medium rounded-lg hover:bg-gray-800 hover:text-white transition-all">
-              Add to favorite
+          
+            <button
+              onClick={handleAddToCart}
+              className="w-full py-3 bg-gray-800 text-white font-medium rounded-lg hover:bg-gray-700 transition-all mb-3"
+            >
+              Add to Basket
             </button>
+
+            <button
+              onClick={() => dispatch(toggleFavorite(data))}
+              className={`w-full py-3 border-2 font-medium rounded-lg transition-all flex items-center justify-center gap-2 ${
+                favorites.some((fav: Product) => fav._id === data._id)
+                  ? "bg-red-500 text-white hover:bg-red-400"
+                  : "bg-white text-gray-800 hover:bg-gray-200"
+              }`}
+            >
+              <Heart size={20} /> {favorites.some((fav: Product) => fav._id === data._id) ? "Remove from Favorites" : "Add to Favorites"}
+            </button>
+
           </div>
         </div>
       ) : (
-        <p className="text-center text-red-500">Ürün bulunamadı!</p>
+        <p className="text-center text-red-500">Product not found!</p>
       )}
     </div>
   );

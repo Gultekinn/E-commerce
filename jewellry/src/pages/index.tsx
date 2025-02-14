@@ -10,7 +10,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
-    <>    <div className={styles.background}>
+    <>  
+      <div className={styles.background}>
       <div className={styles.content}>
         <h1 className={styles.title}>New Collection</h1>
         <p className={styles.description}>The new ring sensation</p>

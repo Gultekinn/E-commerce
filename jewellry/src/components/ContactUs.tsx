@@ -67,43 +67,7 @@ const ContactUs = () => {
                 />
               </div>
             </div>
-            {/* <div className="sm:col-span-2">
-            <label
-  htmlFor="phone-number"
-  style={{ backgroundColor: 'black' }}
-  className="block text-sm/6 font-semibold text-white"
->
-                Phone number
-              </label>
-              <div className="mt-2.5">
-                <div className="flex rounded-md !bg-black outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-                  <div className="grid shrink-0 grid-cols-1 focus-within:relative">
-                    <select
-                      id="country"
-                      name="country"
-                      autoComplete="country"
-                      aria-label="Country"
-                      className="col-start-1 row-start-1 w-full appearance-none rounded-md py-2 pl-3.5 pr-7 text-base text-white placeholder:text-white focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    >
-                      <option>US</option>
-                      <option>CA</option>
-                      <option>EU</option>
-                    </select>
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-white sm:size-4"
-                    />
-                  </div>
-                  <input
-                    id="phone-number"
-                    name="phone-number"
-                    type="text"
-                    placeholder="123-456-7890"
-                    className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-white placeholder:text-white focus:outline focus:outline-0 sm:text-sm/6"
-                  />
-                </div>
-              </div>
-            </div> */}
+     
             <div className="sm:col-span-2">
               <label htmlFor="message" className="block text-sm/6 font-semibold text-white">
                 Message
