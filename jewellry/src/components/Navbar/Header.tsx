@@ -120,7 +120,7 @@ const Header: React.FC = () => {
           </Link>
           <Link href="/login">
             <button className="flex items-center border-gray-700 text-gray-700 rounded-md hover:text-red-700">
-              <LogIn size={18} className="mr-2" /> Login
+              <LogIn size={18} className="mr-2" />
             </button>
           </Link>
         </div>
