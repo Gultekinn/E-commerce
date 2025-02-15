@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
-const { Ring } = require("../models/Ring.model");
-const ringController = {
+const { Bracelets } = require("../models/Bracelets.model");
+const braceletsController = {
   getAll: async (req, res) => {
     try {
-      const target = await Ring.find();
+      const target = await Bracelets.find();
       res.status(200).json(target);
     } catch (error) {
-      console.error("Error fetching rings:", error);
-      res.status(500).json({ error: "Failed to fetch rings" });
+      console.error("Error fetching bracelets:", error);
+      res.status(500).json({ error: "Failed to fetch bracelets" });
     }
   },
   
   getById: async (req, res) => {
     const { id } = req.params;
-    const target = await Ring.findById(id);
+    const target = await Bracelets.findById(id);
     res.send(target);
   },
   add: async (req, res) => {
@@ -23,18 +23,18 @@ const ringController = {
         return res.status(400).json({ error: "Main image is required" });
       }
       const mainImage = mainImageFile[0].filename;
-      const newRing = new Ring({
+      const newBracelets = new Bracelets({
         title: req.body.title,
         price: req.body.price,
         category: req.body.category.split(","),
         description: req.body.description,
         mainimage: mainImage,
       });
-      await newRing.save();
-      res.status(201).json(newRing);
+      await newBracelets.save();
+      res.status(201).json(newBracelets);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Failed to add ring" });
+      res.status(500).json({ error: "Failed to add bracelets" });
     }
   },
   
@@ -43,30 +43,32 @@ const ringController = {
     const { title, price, category, description } = req.body;
     const mainImageFile = req.files["mainimage"];
     try {
-      const ring = await Ring.findById(id);
-      if (!ring) {
-        return res.status(404).json({ error: "Ring not found" });
+      const bracelets = await Bracelets.findById(id);
+      if (!bracelets) {
+        return res.status(404).json({ error: "Bracelets not found" });
       }
-      ring.title = title;
-      ring.price = price;
-      ring.category = category;
-      ring.description = description;
+      bracelets.title = title;
+      bracelets.price = price;
+      bracelets.category = category;
+      bracelets.description = description;
+      
       // Update the mainImage if uploaded
       if (mainImageFile) {
-        ring.mainimage = mainImageFile[0].filename;
+        bracelets.mainimage = mainImageFile[0].filename;
       }
-
-      await ring.save();
-      res.status(200).json({ message: "Ring update succesfully" });
+      
+      await bracelets.save();
+      
+      res.status(200).json({ message: "Bracelets update succesfully" });
     } catch (err) {
       console.log(err);
-      res.status(500).json({ error: "Failled to update ring" });
+      res.status(500).json({ error: "Failled to update Bracelets" });
     }
   },
   delete: async (req, res) => {
     const { id } = req.params;
-    await Ring.findByIdAndDelete(id);
+    await Bracelets.findByIdAndDelete(id);
     res.send(`${id} 's element has been delete`);
   },
 };
-module.exports = { ringController };
+module.exports = { braceletsController };
